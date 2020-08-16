@@ -1,0 +1,5 @@
+data <- readRDS('summarySCC_PM25.rds')
+tot_data <- aggregate(Emissions~year,data,sum)
+png('plot_1.png')
+barplot(tot_data$Emissions,names.arg=tot_data$year,xlab="years",col = tot_data$year, ylab=expression('total PM'[2.5]*' emission'),main=expression('Total PM'[2.5]*' emissions at various years'))
+dev.off()

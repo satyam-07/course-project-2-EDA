@@ -1,0 +1,6 @@
+data <- readRDS('summarySCC_PM25.rds')
+sub_dat <- subset(data,fips=='24510')
+temp <- aggregate(Emissions~year+type,sub_dat,sum)
+png('plot_3.png')
+g <- ggplot(temp,aes(year,Emissions,col=type))
+g+geom_point()+facet_grid(.~type)+geom_smooth(method=lm,se=FALSE)+ggtitle('Total Emissions in Baltimore from 1999 to 2008')

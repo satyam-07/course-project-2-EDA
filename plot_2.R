@@ -1,0 +1,6 @@
+data <- readRDS('summarySCC_PM25.rds')
+sub_dat <- subset(data,fips=='24510')
+temp <- aggregate(Emissions~year,sub_dat,sum)
+png('plot_2.png')
+barplot(temp$Emissions,names.arg=temp$year,xlab='Years',col=temp$year,ylab=expression('total PM'[2.5]*'emission in Baltimore'),main=expression('total PM'[2.5]*'emission in Baltimore in all years'))
+dev.off()
